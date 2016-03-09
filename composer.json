@@ -17,8 +17,5 @@
     "psr-4": {
       "ingot\\addon\\edd\\": "src"
     }
-  },
-  "files": [
-    "src/functions.php"
-  ]
+  }
 }
