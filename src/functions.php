@@ -11,6 +11,10 @@ use ingot\addon\edd\tracking;
  */
 function ingot_edd_destination_init(){
 	define( 'INGOT_EDD_VER', '1.0.0' );
+	if( ! ingot_is_edd_active() ) {
+		return;
+	}
+	
 	add_action( 'ingot_loaded', function(){
 		new add_destinations();
 		new tracking();
