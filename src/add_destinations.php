@@ -12,7 +12,6 @@
 
 namespace ingot\addon\edd;
 
-
 class add_destinations {
 	/**
 	 * Add hooks
@@ -20,7 +19,8 @@ class add_destinations {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		add_filter( 'ingot_allowed_click_types', [ $this, 'destination_types' ] );
+		add_filter( 'ingot_allowed_destination_types', [ $this, 'destination_types' ] );
+		add_filter( 'ingot_allowed_click_types', [ $this, 'allow_destination' ] );
 	}
 
 	/**
@@ -35,7 +35,6 @@ class add_destinations {
 	 * @return array
 	 */
 	public function destination_types( $types ){
-
 		return array_merge( $types, [
 				'cart_edd' => [
 					'name'        => __( 'Add To Cart -- Easy Digital Downloads', 'ingot' ),
@@ -48,6 +47,25 @@ class add_destinations {
 			]
 		);
 
+	}
+
+	/**
+	 * Add destination testing if not already added
+	 *
+	 * @since 1.0.0
+	 *
+	 * @uses "ingot_allowed_click_types" filter
+	 *
+	 * @param $types
+	 *
+	 * @return array
+	 */
+	public function allow_destination( $types ){
+		if( ! isset( $types[ 'destination' ] ) ){
+			$types = array_merge( $types, \ingot\testing\types::destination_definition() );
+		}
+
+		return $types;
 	}
 
 }
