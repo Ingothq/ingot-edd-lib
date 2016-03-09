@@ -1,0 +1,24 @@
+{
+  "name": "ingot/ingot-edd-lib",
+  "description": "Composer lib to add EDD support for Ingot",
+  "keywords": [
+    "wordpress"
+  ],
+  "minimum-stability": "dev",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Josh Pollock",
+      "homepage": "http://JoshPress.net",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "ingot\\addon\\edd\\": "src"
+    }
+  },
+  "files": [
+    "src/functions.php"
+  ]
+}
